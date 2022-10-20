@@ -5,8 +5,7 @@ import re
 import sys
 
 import pkg_resources
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def read(*parts):
@@ -25,24 +24,22 @@ def find_version(*file_paths):
 
 
 install_requires = [
-    'docopt >= 0.6.1, < 1',
-    'PyYAML >= 3.10, < 6',
-    'requests >= 2.20.0, < 3',
-    'texttable >= 0.9.0, < 2',
-    'websocket-client >= 0.32.0, < 1',
+    'docopt >= 0.6.1',
+    'PyYAML >= 3.10',
+    'requests >= 2.20.0',
+    'texttable >= 0.9.0',
+    'websocket-client >= 0.32.0',
     'distro >= 1.5.0, < 2',
-    'docker[ssh] >= 4.4.4, < 5',
-    'dockerpty >= 0.4.1, < 1',
-    'jsonschema >= 2.5.1, < 4',
-    'python-dotenv >= 0.13.0, < 1',
+    'docker[ssh] >= 4.4.4',
+    'dockerpty >= 0.4.1',
+    'jsonschema >= 2.5.1',
+    'python-dotenv >= 0.13.0',
 ]
-
 
 tests_require = [
     'ddt >= 1.2.2, < 2',
     'pytest < 6',
 ]
-
 
 if sys.version_info[:2] < (3, 4):
     tests_require.append('mock >= 1.0.1, < 4')
@@ -55,7 +52,6 @@ extras_require = {
     'tests': tests_require,
 }
 
-
 try:
     if 'bdist_wheel' not in sys.argv:
         for key, value in extras_require.items():
@@ -63,11 +59,11 @@ try:
                 install_requires.extend(value)
 except Exception as e:
     print("Failed to compute platform dependencies: {}. ".format(e) +
-          "All dependencies will be installed as a result.", file=sys.stderr)
+          "All dependencies will be installed as a result.",
+          file=sys.stderr)
     for key, value in extras_require.items():
         if key.startswith(':'):
             install_requires.extend(value)
-
 
 setup(
     name='docker-compose',
@@ -78,7 +74,8 @@ setup(
     url='https://www.docker.com/',
     project_urls={
         'Documentation': 'https://docs.docker.com/compose/overview',
-        'Changelog': 'https://github.com/docker/compose/blob/release/CHANGELOG.md',
+        'Changelog':
+        'https://github.com/docker/compose/blob/release/CHANGELOG.md',
         'Source': 'https://github.com/docker/compose',
         'Tracker': 'https://github.com/docker/compose/issues',
     },
